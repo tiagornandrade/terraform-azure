@@ -48,10 +48,9 @@ resource "azurerm_storage_account" "events" {
   account_replication_type = "LRS"
 }
 
-resource "azurerm_storage_container" "events" {
+resource "azurerm_storage_data_lake_gen2_filesystem" "events" {
   name                  = "dev"
-  storage_account_name  = azurerm_storage_account.events.name
-  container_access_type = "private"
+  storage_account_id  = azurerm_storage_account.events.id
 }
 
 resource "azurerm_data_factory" "events" {
